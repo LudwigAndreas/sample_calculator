@@ -12,7 +12,7 @@ def perform_f_test(sample1, sample2, alpha) -> bool:
     k_2 = min(len(sample1), len(sample2)) - 1
     print_tools.print_metrcs("k₁", "k₁", k_1)
     print_tools.print_metrcs("k₂", "k₂", k_2)
-    f_crit = scipy.stats.f.ppf(1 - alpha, k_1, k_2)
+    f_crit = scipy.stats.f.ppf(1 - alpha / 2, k_1, k_2)
     print_tools.print_metrcs("F_крит", "F критическое", round(f_crit, 3))
     f_obs = max(D0, D1) / min(D0, D1)
     print_tools.print_metrcs("F_набл", "F наблюдаемое", round(f_obs, 3))
@@ -28,8 +28,9 @@ def perform_t_test(sample1, sample2 , alpha) -> bool:
     D0 = calculations.find_subgeneral_variance(sample1, x1)
     D1 = calculations.find_subgeneral_variance(sample2, x2)
     t_crit = scipy.stats.t.ppf(q= 1 - alpha / 2, df=len(sample1) + len(sample2) - 2)
-    print_tools.print_metrcs("t_крит", "t критическое", round(t_crit, 3))
     s_general = ((D0 * (len(sample1) - 1) + D1 * (len(sample2) - 1)) / (len(sample1) + len(sample2) - 2)) ** 0.5
+    print_tools.print_metrcs("S_общ", "S общее", round(s_general, 3))
+    print_tools.print_metrcs("t_крит", "t критическое", round(t_crit, 3))
     t_obs = (x1 - x2) / (s_general * ((1 / len(sample1) + 1 / len(sample2)) ** 0.5))
     print_tools.print_metrcs("t_набл", "t наблюдаемое", round(t_obs, 3))
     print_tools.print_hypothesis_testing(abs(t_obs) < t_crit)
