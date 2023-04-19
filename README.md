@@ -118,7 +118,7 @@ $ python3 main.py -s anova_1 anova_2 anova_3 -a 0.05
 
 ## Contributing
 
-We welcome contributions from anyone who would like to help improve this project. If you'd like to contribute, please follow these guidelines:
+I welcome contributions from anyone who would like to help improve this project. If you'd like to contribute, please follow these guidelines:
 
 * Fork the repository and create your branch from main.
 * Write clear, concise code and comments.
@@ -136,16 +136,16 @@ This project is licensed under the MIT License - see the LICENSE.txt file for de
 
 ## Acknowledgments
 
-We would like to thank the following individuals and organizations for their contributions to this project:
+I would like to thank the following individuals and organizations for their contributions to this project:
 
 * Mukhamedjanova Sofia, for providing valuable feedback during the development process.
 
 ## Contact
 
-If you have any questions, comments, or feedback about this project, you can reach us at:
+If you have any questions, comments, or feedback about this project, you can reach me at:
 
 * Email: ev.sand.raw@gmail.com
 * Telegram: @Ludwig_Andreas
 * GitHub: @LudwigAndreas
 
-We would love to hear from you!
+I would love to hear from you!
