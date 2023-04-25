@@ -9,7 +9,7 @@ import print_tools
 def read_int_list_from_file(file_path):
 	with open(file_path, 'r') as f:
 		line = f.readline().strip()
-		int_list = [int(x) for x in line.split()]
+		int_list = [float(x) for x in line.split()]
 		return int_list
 
 
@@ -33,9 +33,6 @@ if __name__ == '__main__':
 
 	alpha = args.alpha
 
-	if (alpha == None):
-		exit()
-
 	if (len(samples) == 1):
 		print_tools.print_title("One Sample Test")
 		if (general_averages != None):
@@ -44,10 +41,13 @@ if __name__ == '__main__':
 			one_sample_test.one_sample_test(samples[0], alpha,)
 	elif (len(samples) == 2):
 		print_tools.print_title("Two Sample Test")
-		if (general_averages != None and general_averages[0] != None and general_averages[1] != None):
+		if (alpha == None):
+			two_sample_test.correlation_analysis(samples[0], samples[1])
+		elif (general_averages != None and general_averages[0] != None and general_averages[1] != None):
 			two_sample_test.two_sample_tests(samples[0], samples[1], alpha, general_average1=general_averages[0], general_average2=general_averages[1])
 		else:
 			two_sample_test.two_sample_tests(samples[0], samples[1], alpha)
+		
 	else:
 		print_tools.print_title("Multiple Sample Test")
 		multi_sample_test.multiple_sample_tests(samples, alpha)

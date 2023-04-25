@@ -60,3 +60,46 @@ def two_sample_tests(sample1, sample2, alpha, general_average1 = None, general_a
             perform_t_test(sample1, sample2, alpha)
             exit()
     perform_z_test(sample1, sample2, alpha, general_average1, general_average2)
+
+
+def correlation_analysis(x, y):
+	print_tools.print_title("Correlation analysis")
+	sum_x = sum(x)
+	sum_y = sum(y)
+	sum_x_min_y = 0
+	sum_xy = 0
+	sum_x_sqr = 0
+	sum_y_sqr = 0
+	n = len(x)
+	S = 0;
+	xy = []
+	sqr_x = []
+	for i in range(n):
+		sum_xy += x[i] * y[i]
+		sqr_x.append(x[i] ** 2)
+		xy.append(x[i] * y[i])
+		sum_x_sqr += x[i] ** 2
+		sum_y_sqr += y[i] ** 2
+		sum_x_min_y += x[i] - y[i]
+	av_x = calculations.find_average(x)
+	av_y = calculations.find_average(y)
+	av_xy = calculations.find_average(xy)
+	av_sqr_x = calculations.find_average(sqr_x)
+
+	b1 = (av_xy - av_x * av_y) / (av_sqr_x - (av_x ** 2))
+	b0 = av_y - b1 * av_x
+
+	Dy = calculations.find_general_variance(y, av_y)
+	Dx = calculations.find_general_variance(x, av_x)
+
+	r = (av_xy - av_x * av_y) / ((Dx ** 0.5) * (Dy ** 0.5))
+
+	print_tools.print_metrcs("xy", "", round(calculations.find_average(xy), 3))
+	print_tools.print_metrcs("sum(x)", "", sum_x)
+	print_tools.print_metrcs("sum(y)", "", sum_y)
+	print_tools.print_metrcs("sum(xy)", "", round(sum_xy, 3))
+	print_tools.print_metrcs("sum(x²)", "", round(sum_x_sqr, 3))
+	print_tools.print_metrcs("sum(y²)", "", round(sum_y_sqr, 3))
+	print_tools.print_metrcs("b0", "", round(b0, 3))
+	print_tools.print_metrcs("b1", "", round(b1, 3))
+	print_tools.print_metrcs("r", "", round(r, 3))
